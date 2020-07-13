@@ -1,7 +1,8 @@
 import time
 from datetime import datetime
 
-from uswap import USwapper
+from colorama import Back, Style
+from uswapper import USwapper
 
 us = USwapper()
 sym = str.upper( input( 'symbol?' ).replace( ' ', '' ) ).split( ',' )
@@ -13,13 +14,22 @@ def currtime():
     return st
 
 
+d = {}
+
 while True:
 
     out = ''
+    out += Style.RESET_ALL
     for s in sym:
+        if s == 'BUIDL':
+            s = s.lower()
+
         p = float( us.getprice( symbol=s ) )
         p = us.ethprice * p
+
+        out += Back.GREEN if p > d.get( s, 0 ) else Back.RED if p < d.get( s, 0 ) else ''
+
         out += f' | {s}: {p:.6f}'
 
+        d[s] = p
     print( f'{currtime()} {out}' )
-
