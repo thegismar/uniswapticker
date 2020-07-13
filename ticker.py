@@ -23,4 +23,3 @@ while True:
 
     print( f'{currtime()} {out}' )
 
-    time.sleep( 1 )
