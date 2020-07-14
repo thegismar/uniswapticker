@@ -27,9 +27,12 @@ while True:
         p = float( us.getprice( symbol=s ) )
         p = us.ethprice * p
 
+        out += f' | '
         out += Back.GREEN if p > d.get( s, 0 ) else Back.RED if p < d.get( s, 0 ) else ''
-
-        out += f' | {s}: {p:.6f}'
+        out += f'{s}: {p:.6f}'
+        out += Style.RESET_ALL
 
         d[s] = p
     print( f'{currtime()} {out}' )
+
+    time.sleep( 0.5 )

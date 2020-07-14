@@ -1,5 +1,2 @@
-pandas
-requests
-graphqlclient
-uswapper
-colorama
+colorama>=0.4.3
+uswapper>=0.14
