@@ -1,2 +1,2 @@
 colorama>=0.4.3
-uswapper>=0.14
+uswapper>=0.19

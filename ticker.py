@@ -1,11 +1,20 @@
+import argparse
 import time
 from datetime import datetime
-
 from colorama import Back, Style
 from uswapper import USwapper
 
+parser = argparse.ArgumentParser()
+parser.add_argument( 'symbol', nargs='+' )
+args = parser.parse_args()
+
+_ = ''
+
+for a in args.symbol:
+    _ += f'{a} '
+
 us = USwapper()
-sym = str.upper( input( 'symbol?' ).replace( ' ', '' ) ).split( ',' )
+sym = str.upper( _ ).split( ' ' )
 
 
 def currtime():
@@ -20,19 +29,22 @@ while True:
 
     out = ''
     out += Style.RESET_ALL
-    for s in sym:
+    for s in args.symbol:
         if s == 'BUIDL':
             s = s.lower()
+        else:
+            s = s.upper()
 
-        p = float( us.getprice( symbol=s ) )
-        p = us.ethprice * p
+        peth = float( us.getprice( symbol=s ) )
+        pusd = us.ethprice * peth
 
         out += f' | '
-        out += Back.GREEN if p > d.get( s, 0 ) else Back.RED if p < d.get( s, 0 ) else ''
-        out += f'{s}: {p:.6f}'
+        out += f'{s}: '
+        out += Back.GREEN if pusd > d.get( s, 0 ) else Back.RED if pusd < d.get( s, 0 ) else ''
+        out += f'{pusd:.6f}$ {peth:.8f}Ξ'
         out += Style.RESET_ALL
 
-        d[s] = p
+        d[s] = pusd
     print( f'{currtime()} {out}' )
 
     time.sleep( 0.5 )
