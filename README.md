@@ -1,3 +1,5 @@
+# uniswapticker
+
 very basic ticker to fetch uniswap prices from graphql API.
 
 install requirements using pip/pip3 install -r requirements.txt
