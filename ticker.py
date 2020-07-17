@@ -1,6 +1,7 @@
 import argparse
 import time
 from datetime import datetime
+
 from colorama import Back, Style
 from uswapper import USwapper
 
@@ -29,14 +30,16 @@ while True:
 
     out = ''
     out += Style.RESET_ALL
+
     for s in args.symbol:
+        s = s.upper()
+
         if s == 'BUIDL':
             s = s.lower()
-        else:
-            s = s.upper()
 
         peth = float( us.getprice( symbol=s ) )
-        pusd = us.ethprice * peth
+        pusdc = float( us.getprice( symbol='USDC' ) )
+        pusd = peth / pusdc
 
         out += f' | '
         out += f'{s}: '
