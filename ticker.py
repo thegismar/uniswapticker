@@ -48,6 +48,6 @@ while True:
         out += Style.RESET_ALL
 
         d[s] = pusd
-    print( f'{currtime()} {out}' )
+    print( f'{us.getlastupdated()} {out}' )
 
     time.sleep( 0.5 )
