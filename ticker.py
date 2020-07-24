@@ -90,11 +90,9 @@ while True:
 
         out += f' | '
         out += f'{s}: '
-        out += Back.GREEN if pusd > d.get( f'{s}usd', 0 ) else Back.RED if pusd < d.get( f'{s}usd', 0 ) else ''
-        out += f'{pusd:.6f}$'
-        out += Style.RESET_ALL
-        out += '   '
         out += Back.GREEN if peth > d.get( f'{s}eth', 0 ) else Back.RED if peth < d.get( f'{s}eth', 0 ) else ''
+        out += f'{pusd:.6f}$'
+        out += '   '
         out += f'{peth:.8f}Ξ'
         out += Style.RESET_ALL
 
