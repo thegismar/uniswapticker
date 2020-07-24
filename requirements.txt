@@ -1,3 +1,3 @@
 colorama>=0.4.3
-uswapper>=0.20
+uswapper>=0.27
 python-pushover>=0.4
