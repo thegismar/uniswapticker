@@ -25,7 +25,7 @@ args = parser.parse_args()
 # if not get env variables and initiate pushover client
 
 alerts = False if (args.l or args.u) and len( args.symbol ) > 1 else False if (args.l and args.u) and len(
-    args.symbol ) == 1 else None
+        args.symbol ) == 1 else None
 
 if alerts is False:
     parser.error( 'pushover alerts only implemented for ONE token' )
@@ -35,7 +35,7 @@ elif alerts is True:
         p_token = os.getenv( 'PUSHOVER_TOKEN' )
     except KeyError:
         print( 'Environment variables for pushover not set' )  # pushover client init
-        sys.exit(1)
+        sys.exit( 1 )
     else:
         client = Client( p_key, api_token=p_token )
         last_push = None
@@ -73,6 +73,12 @@ while True:
         if s == 'BUIDL':
             s = s.lower()
 
+        try:
+            us.isuniswapasset( s )
+        except KeyError:
+            print( f'Silly Normie, {s} is not part of Uniswap tokens!! Go back to Binance.' )
+            sys.exit()
+
         peth = float( us.getprice( symbol=s ) )
         pusdc = float( us.getprice( symbol='USDC' ) )
         pusd = peth / pusdc
@@ -100,4 +106,4 @@ while True:
         d[f'{s}usd'] = pusd
 
     print( f'{currtime()} {out}' )
-    time.sleep(int(args.t))
+    time.sleep( int( args.t ) )
