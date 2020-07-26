@@ -24,7 +24,7 @@ args = parser.parse_args()
 # check if lower/upper alerts are given with multiple symbols
 # if not get env variables and initiate pushover client
 
-alerts = False if (args.l or args.u) and len( args.symbol ) > 1 else False if (args.l and args.u) and len(
+alerts = False if (args.l or args.u) and len( args.symbol ) > 1 else True if (args.l and args.u) and len(
         args.symbol ) == 1 else None
 
 if alerts is False:
