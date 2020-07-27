@@ -3,7 +3,6 @@ import os
 import sys
 import time
 from datetime import datetime
-
 from colorama import Back, Style
 from pushover import Client
 from uswapper import USwapper
@@ -61,7 +60,6 @@ us = USwapper()
 d = {}
 
 while True:
-
     out = ''
     out += Style.RESET_ALL
 
@@ -106,4 +104,4 @@ while True:
         d[f'{s}usd'] = pusd
 
     print( f'{currtime()} {out}' )
-    time.sleep( int( args.t ) )
+    time.sleep( float( args.t ) )
