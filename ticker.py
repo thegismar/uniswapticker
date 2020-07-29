@@ -3,6 +3,7 @@ import os
 import sys
 import time
 from datetime import datetime
+
 from colorama import Back, Style
 from pushover import Client
 from uswapper import USwapper
@@ -39,11 +40,16 @@ elif alerts is True:
         client = Client( p_key, api_token=p_token )
         last_push = None
 
-# adding cmd ine tokens to string
-_ = ''
-for a in args.symbol:
-    _ += f'{a} '
-sym = str.upper( _ ).split( ' ' )
+# # adding cmd ine tokens to string
+# _ = ''
+# for a in args.symbol:
+#     if str.startswith( a, '0x' ):
+#         a = str.lower(a)
+#     else:
+#         a = str.upper(a)
+#
+#     _ += f'{a} '
+#     sym = str.upper( _ ).split( ' ' )
 
 
 # current time output
@@ -65,8 +71,10 @@ while True:
 
     for s in args.symbol:
 
-        s = s.upper()
-
+        if str.startswith( s, '0x' ):
+            s = str.lower( s )
+        else:
+            s = str.upper( s )
         # since buidl uppercase is buidl v1 according to uniswap
         if s == 'BUIDL':
             s = s.lower()
