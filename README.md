@@ -20,11 +20,13 @@ flags
 pushover account needed
 -----------------------
 -l float below which pushover message will be triggered
+
 -u float above which pushover message will be triggered
 
 PUSHOVER_KEY & PUSHOVER_TOKEN must be environment variables
 
 current limitations
 -----------------------
-pushover alarms can only
+pushover alarms can only be set for ONE token supplied
+
 color changes based on ETH value, not USDC
